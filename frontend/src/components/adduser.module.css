@@ -1,0 +1,10 @@
+.myform{
+    margin: 2rem 0;
+}
+
+.addbutton{
+    margin-left: 10px;
+    border: none;
+    background-color: rgb(129, 129, 231);
+    font-size: 16px;
+}

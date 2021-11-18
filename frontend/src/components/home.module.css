@@ -1,0 +1,19 @@
+.loadbutton{
+    margin: 10px 0;
+    font-size: 15px;
+    
+}
+.table{
+    border: 1px solid rebeccapurple;
+    margin: 15vh auto;
+}
+th{
+ padding-bottom: 8px;
+}
+.delete{
+    display: block;
+}
+td{
+    padding: 10px;
+}
+   
