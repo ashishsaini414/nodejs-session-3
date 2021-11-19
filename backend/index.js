@@ -16,12 +16,10 @@ app.get("/loaduser",(req, res)=>{
 })
 
 app.post("/removeuser",(req, res)=>{
-    console.log(req.body)
     userData = userData.filter(user => user.id !== req.body.id)
     res.send(JSON.stringify(userData))
 })
 app.post("/adduser",(req, res)=>{
-    // console.log(req.body)
     userData.push({...req.body, created_on: req.responseTime})
     res.send(JSON.stringify(userData))
 })

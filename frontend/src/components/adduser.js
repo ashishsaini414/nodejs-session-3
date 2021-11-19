@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { Fragment } from "react/cjs/react.production.min"
 import classes from './adduser.module.css'
-
+import Home from './home'
 const AddUser = (props) =>{
     const [inputState, setInputState]= useState('')
+    const [isUserAdded, setIsUserAdded] = useState(false)
     const addUserHandler = (event) => {
         setInputState(event.target.value)
     }
@@ -15,6 +16,7 @@ const AddUser = (props) =>{
             },
             body:JSON.stringify({id: Math.random(), name: inputState})
         }).then(response => response.json()).then(data => props.onAddUser(data))
+        setIsUserAdded(true)
     }
     const formHandler = (event) => {
         event.preventDefault(); 
@@ -25,6 +27,7 @@ const AddUser = (props) =>{
             <input text="type" onChange={addUserHandler}></input>
             <button onClick={clickHandler} className={classes.addbutton}>Add</button>
         </form>
+        {isUserAdded && <p><b>User Added Successfully</b> <p>Goto Home page for users list</p></p>}
     </Fragment>
 }
 

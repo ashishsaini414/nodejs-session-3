@@ -4,6 +4,7 @@ import classes from './home.module.css'
 const Home = (props) => {
   const { data } =props
   const [state, setState] = useState([]);
+  const [isUsersLoaded, setIsUsersLoaded] = useState(false)
   useEffect(()=>{
     setState(data)
     console.log(data)
@@ -16,6 +17,7 @@ const Home = (props) => {
           setState((prevState) => [...prevState, data[key]]);
         }
       });
+      setIsUsersLoaded(true)
   };
 
   const deleteHandler = (index) => {
@@ -31,7 +33,7 @@ const Home = (props) => {
 
   return (
     <Fragment>
-      <button className={classes.loadbutton} onClick={userhandler}>Load Users</button>
+      <button className={classes.loadbutton} disabled={isUsersLoaded} onClick={userhandler}>Load Users</button>
       <table className = {classes.table}>
         <td>
           <th>Names</th>
