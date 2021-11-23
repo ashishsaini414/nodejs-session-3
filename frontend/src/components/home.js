@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
-import classes from './home.module.css'
+import classes from "./home.module.css";
 const Home = (props) => {
-  const { data } =props
+  const { data } = props;
   const [state, setState] = useState([]);
-  const [isUsersLoaded, setIsUsersLoaded] = useState(false)
-  useEffect(()=>{
-    setState(data)
-    console.log(data)
-  },[data])
+  const [isUsersLoaded, setIsUsersLoaded] = useState(false);
+  var count = 0
+  useEffect(() => {
+    setState(data);
+    console.log(data);
+  }, [data]);
   const userhandler = () => {
+    setState([]);
     fetch("/loaduser")
       .then((response) => response.json())
       .then((data) => {
@@ -17,7 +19,7 @@ const Home = (props) => {
           setState((prevState) => [...prevState, data[key]]);
         }
       });
-      setIsUsersLoaded(true)
+    setIsUsersLoaded(true);
   };
 
   const deleteHandler = (index) => {
@@ -28,23 +30,32 @@ const Home = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(state[index]),
-    }).then(response => response.json()).then(data=> console.log(data))
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   };
 
   return (
     <Fragment>
-      <button className={classes.loadbutton} disabled={isUsersLoaded} onClick={userhandler}>Load Users</button>
-      <table className = {classes.table}>
+      <button className={classes.loadbutton} onClick={userhandler}>
+        Load Users
+      </button>
+      <table className={classes.table}>
         <td>
-          <th>Names</th>
+          <th className={classes.thead}>Names</th>
           {state.map((obj) => (
-            <tr>{obj.name}</tr>
+            <tr className={classes.entry}>{obj.name}</tr>
           ))}
-          </td>
-          <td>
+        </td>
+        <td>
           <th>Actions</th>
           {state.map((obj, index) => (
-            <button className={classes.delete} onClick={() => deleteHandler(index)}>delete</button>
+            <button
+              className={classes.delete}
+              onClick={() => deleteHandler(index)}
+            >
+              delete
+            </button>
           ))}
         </td>
       </table>

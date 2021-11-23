@@ -6,12 +6,23 @@
 .table{
     border: 1px solid rebeccapurple;
     margin: 15vh auto;
+    background-color: rgb(219, 83, 83);
 }
 th{
  padding-bottom: 8px;
 }
+.entry{
+    display: block;
+    margin: 4px;
+}
 .delete{
     display: block;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+}
+.delete:active{
+    color: green;
 }
 td{
     padding: 10px;
